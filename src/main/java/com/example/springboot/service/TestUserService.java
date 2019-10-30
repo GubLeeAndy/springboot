@@ -10,4 +10,6 @@ public interface TestUserService {
     String hello();
 
     String delete();
+
+    String insertAll();
 }

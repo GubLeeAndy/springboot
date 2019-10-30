@@ -38,4 +38,13 @@ public class TestUserServiceImpl implements TestUserService {
         testUserMapper.deleteByPrimaryKey("04bdb0db24bc4d4f8dfe17846485e5b1");
         return "成功";
     }
+
+    @Override
+    public String insertAll() {
+        TestUser testUser = new TestUser();
+        testUser.setId(UID.generateID());
+        testUser.setName("测试");
+        testUserMapper.insertSelective(testUser);
+        return "成功";
+    }
 }
