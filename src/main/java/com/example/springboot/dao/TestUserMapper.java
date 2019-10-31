@@ -14,4 +14,13 @@ public interface TestUserMapper {
     int updateByPrimaryKeySelective(TestUser record);
 
     int updateByPrimaryKey(TestUser record);
+
+    /**
+     * @description TODO 查询名称
+     * @author zn
+     * @date 2019/10/31 11:02
+     * @param record
+     * @return
+     */
+    TestUser selectUserByName(TestUser record);
 }

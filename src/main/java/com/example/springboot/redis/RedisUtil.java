@@ -1,4 +1,4 @@
-package com.example.springboot.config.redis;
+package com.example.springboot.redis;
 
 import com.example.springboot.utils.CacheConstants;
 import org.slf4j.Logger;

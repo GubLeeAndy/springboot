@@ -55,4 +55,9 @@
     set NAME = #{name,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
+  <select id="selectUserByName" parameterType="com.example.springboot.entity.TestUser" resultType="com.example.springboot.entity.TestUser">
+    SELECT ID, NAME
+    FROM TEST_USER
+    WHERE NAME = #{name,jdbcType=VARCHAR}
+  </select>
 </mapper>

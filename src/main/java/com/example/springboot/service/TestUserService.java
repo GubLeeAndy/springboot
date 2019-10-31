@@ -1,5 +1,8 @@
 package com.example.springboot.service;
 
+import com.example.springboot.entity.TestUser;
+import com.example.springboot.utils.Result;
+
 /**
  * @description: TODO()
  * @author: zn
@@ -7,9 +10,5 @@ package com.example.springboot.service;
  * @version:
  */
 public interface TestUserService {
-    String hello();
-
-    String delete();
-
-    String insertAll();
+    TestUser seletUserName(TestUser testUser);
 }
