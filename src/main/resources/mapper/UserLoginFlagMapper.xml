@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.dao.UserLoginFlagMapper">
+  <resultMap id="BaseResultMap" type="com.example.springboot.entity.UserLoginFlag">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="SYSTEM_ID" jdbcType="VARCHAR" property="systemId" />
+    <result column="ORGAN_ID" jdbcType="VARCHAR" property="organId" />
+    <result column="ON_OFF" jdbcType="CHAR" property="onOff" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="DEPARTMENT_ID" jdbcType="VARCHAR" property="departmentId" />
+    <result column="JOB_NUMBER" jdbcType="VARCHAR" property="jobNumber" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, SYSTEM_ID, ORGAN_ID, ON_OFF, USER_ID, CREATE_TIME, MODIFY_TIME, DEPARTMENT_ID, 
+    JOB_NUMBER
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SSO_USER_LOGIN_FLAG
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SSO_USER_LOGIN_FLAG
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.springboot.entity.UserLoginFlag">
+    insert into SSO_USER_LOGIN_FLAG (ID, SYSTEM_ID, ORGAN_ID, 
+      ON_OFF, USER_ID, CREATE_TIME, 
+      MODIFY_TIME, DEPARTMENT_ID, JOB_NUMBER
+      )
+    values (#{id,jdbcType=VARCHAR}, #{systemId,jdbcType=VARCHAR}, #{organId,jdbcType=VARCHAR}, 
+      #{onOff,jdbcType=CHAR}, #{userId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{departmentId,jdbcType=VARCHAR}, #{jobNumber,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.springboot.entity.UserLoginFlag">
+    insert into SSO_USER_LOGIN_FLAG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="systemId != null">
+        SYSTEM_ID,
+      </if>
+      <if test="organId != null">
+        ORGAN_ID,
+      </if>
+      <if test="onOff != null">
+        ON_OFF,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+      <if test="departmentId != null">
+        DEPARTMENT_ID,
+      </if>
+      <if test="jobNumber != null">
+        JOB_NUMBER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null">
+        #{systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="organId != null">
+        #{organId,jdbcType=VARCHAR},
+      </if>
+      <if test="onOff != null">
+        #{onOff,jdbcType=CHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departmentId != null">
+        #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobNumber != null">
+        #{jobNumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.springboot.entity.UserLoginFlag">
+    update SSO_USER_LOGIN_FLAG
+    <set>
+      <if test="systemId != null">
+        SYSTEM_ID = #{systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="organId != null">
+        ORGAN_ID = #{organId,jdbcType=VARCHAR},
+      </if>
+      <if test="onOff != null">
+        ON_OFF = #{onOff,jdbcType=CHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departmentId != null">
+        DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobNumber != null">
+        JOB_NUMBER = #{jobNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.springboot.entity.UserLoginFlag">
+    update SSO_USER_LOGIN_FLAG
+    set SYSTEM_ID = #{systemId,jdbcType=VARCHAR},
+      ORGAN_ID = #{organId,jdbcType=VARCHAR},
+      ON_OFF = #{onOff,jdbcType=CHAR},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR},
+      JOB_NUMBER = #{jobNumber,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

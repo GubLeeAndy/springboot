@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.dao.OrganMapper">
+  <resultMap id="BaseResultMap" type="com.example.springboot.entity.Organ">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="PID" jdbcType="VARCHAR" property="pid" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="ORGAN_CODE" jdbcType="VARCHAR" property="organCode" />
+    <result column="TOP" jdbcType="CHAR" property="top" />
+    <result column="ON_OFF" jdbcType="CHAR" property="onOff" />
+    <result column="RANK" jdbcType="DECIMAL" property="rank" />
+    <result column="CREATE_PEOPLE" jdbcType="VARCHAR" property="createPeople" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="CREATE_ID" jdbcType="VARCHAR" property="createId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PID, NAME, ORGAN_CODE, TOP, ON_OFF, RANK, CREATE_PEOPLE, CREATE_TIME, MODIFY_TIME, 
+    CREATE_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SSO_ORGAN
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SSO_ORGAN
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.springboot.entity.Organ">
+    insert into SSO_ORGAN (ID, PID, NAME, 
+      ORGAN_CODE, TOP, ON_OFF, RANK, 
+      CREATE_PEOPLE, CREATE_TIME, MODIFY_TIME, 
+      CREATE_ID)
+    values (#{id,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{organCode,jdbcType=VARCHAR}, #{top,jdbcType=CHAR}, #{onOff,jdbcType=CHAR}, #{rank,jdbcType=DECIMAL}, 
+      #{createPeople,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{createId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.springboot.entity.Organ">
+    insert into SSO_ORGAN
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="pid != null">
+        PID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="organCode != null">
+        ORGAN_CODE,
+      </if>
+      <if test="top != null">
+        TOP,
+      </if>
+      <if test="onOff != null">
+        ON_OFF,
+      </if>
+      <if test="rank != null">
+        RANK,
+      </if>
+      <if test="createPeople != null">
+        CREATE_PEOPLE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+      <if test="createId != null">
+        CREATE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="organCode != null">
+        #{organCode,jdbcType=VARCHAR},
+      </if>
+      <if test="top != null">
+        #{top,jdbcType=CHAR},
+      </if>
+      <if test="onOff != null">
+        #{onOff,jdbcType=CHAR},
+      </if>
+      <if test="rank != null">
+        #{rank,jdbcType=DECIMAL},
+      </if>
+      <if test="createPeople != null">
+        #{createPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.springboot.entity.Organ">
+    update SSO_ORGAN
+    <set>
+      <if test="pid != null">
+        PID = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="organCode != null">
+        ORGAN_CODE = #{organCode,jdbcType=VARCHAR},
+      </if>
+      <if test="top != null">
+        TOP = #{top,jdbcType=CHAR},
+      </if>
+      <if test="onOff != null">
+        ON_OFF = #{onOff,jdbcType=CHAR},
+      </if>
+      <if test="rank != null">
+        RANK = #{rank,jdbcType=DECIMAL},
+      </if>
+      <if test="createPeople != null">
+        CREATE_PEOPLE = #{createPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        CREATE_ID = #{createId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.springboot.entity.Organ">
+    update SSO_ORGAN
+    set PID = #{pid,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      ORGAN_CODE = #{organCode,jdbcType=VARCHAR},
+      TOP = #{top,jdbcType=CHAR},
+      ON_OFF = #{onOff,jdbcType=CHAR},
+      RANK = #{rank,jdbcType=DECIMAL},
+      CREATE_PEOPLE = #{createPeople,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      CREATE_ID = #{createId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

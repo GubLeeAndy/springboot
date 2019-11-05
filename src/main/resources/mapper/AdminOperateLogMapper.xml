@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.dao.AdminOperateLogMapper">
+  <resultMap id="BaseResultMap" type="com.example.springboot.entity.AdminOperateLog">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="SYSTEM_ID" jdbcType="VARCHAR" property="systemId" />
+    <result column="CREATE_PEOPLE" jdbcType="VARCHAR" property="createPeople" />
+    <result column="ADMIN_ID" jdbcType="VARCHAR" property="adminId" />
+    <result column="MODULE" jdbcType="VARCHAR" property="module" />
+    <result column="OPERATION_OBJ" jdbcType="VARCHAR" property="operationObj" />
+    <result column="OPERATION_TYPE" jdbcType="VARCHAR" property="operationType" />
+    <result column="ATTACHMENT" jdbcType="VARCHAR" property="attachment" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.springboot.entity.AdminOperateLogWithBLOBs">
+    <result column="ORIGINAL_VAL" jdbcType="CLOB" property="originalVal" />
+    <result column="NEW_VAL" jdbcType="CLOB" property="newVal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, SYSTEM_ID, CREATE_PEOPLE, ADMIN_ID, MODULE, OPERATION_OBJ, OPERATION_TYPE, ATTACHMENT, 
+    CREATE_TIME, MODIFY_TIME
+  </sql>
+  <sql id="Blob_Column_List">
+    ORIGINAL_VAL, NEW_VAL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from SSO_ADMIN_OPERATE_LOG
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SSO_ADMIN_OPERATE_LOG
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.springboot.entity.AdminOperateLogWithBLOBs">
+    insert into SSO_ADMIN_OPERATE_LOG (ID, SYSTEM_ID, CREATE_PEOPLE, 
+      ADMIN_ID, MODULE, OPERATION_OBJ, 
+      OPERATION_TYPE, ATTACHMENT, CREATE_TIME, 
+      MODIFY_TIME, ORIGINAL_VAL, NEW_VAL
+      )
+    values (#{id,jdbcType=VARCHAR}, #{systemId,jdbcType=VARCHAR}, #{createPeople,jdbcType=VARCHAR}, 
+      #{adminId,jdbcType=VARCHAR}, #{module,jdbcType=VARCHAR}, #{operationObj,jdbcType=VARCHAR}, 
+      #{operationType,jdbcType=VARCHAR}, #{attachment,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{originalVal,jdbcType=CLOB}, #{newVal,jdbcType=CLOB}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.springboot.entity.AdminOperateLogWithBLOBs">
+    insert into SSO_ADMIN_OPERATE_LOG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="systemId != null">
+        SYSTEM_ID,
+      </if>
+      <if test="createPeople != null">
+        CREATE_PEOPLE,
+      </if>
+      <if test="adminId != null">
+        ADMIN_ID,
+      </if>
+      <if test="module != null">
+        MODULE,
+      </if>
+      <if test="operationObj != null">
+        OPERATION_OBJ,
+      </if>
+      <if test="operationType != null">
+        OPERATION_TYPE,
+      </if>
+      <if test="attachment != null">
+        ATTACHMENT,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+      <if test="originalVal != null">
+        ORIGINAL_VAL,
+      </if>
+      <if test="newVal != null">
+        NEW_VAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null">
+        #{systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="createPeople != null">
+        #{createPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="adminId != null">
+        #{adminId,jdbcType=VARCHAR},
+      </if>
+      <if test="module != null">
+        #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="operationObj != null">
+        #{operationObj,jdbcType=VARCHAR},
+      </if>
+      <if test="operationType != null">
+        #{operationType,jdbcType=VARCHAR},
+      </if>
+      <if test="attachment != null">
+        #{attachment,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="originalVal != null">
+        #{originalVal,jdbcType=CLOB},
+      </if>
+      <if test="newVal != null">
+        #{newVal,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.springboot.entity.AdminOperateLogWithBLOBs">
+    update SSO_ADMIN_OPERATE_LOG
+    <set>
+      <if test="systemId != null">
+        SYSTEM_ID = #{systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="createPeople != null">
+        CREATE_PEOPLE = #{createPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="adminId != null">
+        ADMIN_ID = #{adminId,jdbcType=VARCHAR},
+      </if>
+      <if test="module != null">
+        MODULE = #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="operationObj != null">
+        OPERATION_OBJ = #{operationObj,jdbcType=VARCHAR},
+      </if>
+      <if test="operationType != null">
+        OPERATION_TYPE = #{operationType,jdbcType=VARCHAR},
+      </if>
+      <if test="attachment != null">
+        ATTACHMENT = #{attachment,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="originalVal != null">
+        ORIGINAL_VAL = #{originalVal,jdbcType=CLOB},
+      </if>
+      <if test="newVal != null">
+        NEW_VAL = #{newVal,jdbcType=CLOB},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.springboot.entity.AdminOperateLogWithBLOBs">
+    update SSO_ADMIN_OPERATE_LOG
+    set SYSTEM_ID = #{systemId,jdbcType=VARCHAR},
+      CREATE_PEOPLE = #{createPeople,jdbcType=VARCHAR},
+      ADMIN_ID = #{adminId,jdbcType=VARCHAR},
+      MODULE = #{module,jdbcType=VARCHAR},
+      OPERATION_OBJ = #{operationObj,jdbcType=VARCHAR},
+      OPERATION_TYPE = #{operationType,jdbcType=VARCHAR},
+      ATTACHMENT = #{attachment,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      ORIGINAL_VAL = #{originalVal,jdbcType=CLOB},
+      NEW_VAL = #{newVal,jdbcType=CLOB}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.springboot.entity.AdminOperateLog">
+    update SSO_ADMIN_OPERATE_LOG
+    set SYSTEM_ID = #{systemId,jdbcType=VARCHAR},
+      CREATE_PEOPLE = #{createPeople,jdbcType=VARCHAR},
+      ADMIN_ID = #{adminId,jdbcType=VARCHAR},
+      MODULE = #{module,jdbcType=VARCHAR},
+      OPERATION_OBJ = #{operationObj,jdbcType=VARCHAR},
+      OPERATION_TYPE = #{operationType,jdbcType=VARCHAR},
+      ATTACHMENT = #{attachment,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

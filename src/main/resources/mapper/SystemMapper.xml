@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.dao.SystemMapper">
+  <resultMap id="BaseResultMap" type="com.example.springboot.entity.System">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="SYSTEM_LINK" jdbcType="VARCHAR" property="systemLink" />
+    <result column="ON_OFF" jdbcType="CHAR" property="onOff" />
+    <result column="SYSTEM_TYPE" jdbcType="CHAR" property="systemType" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="CREATE_PEOPLE" jdbcType="VARCHAR" property="createPeople" />
+    <result column="CREATE_ID" jdbcType="VARCHAR" property="createId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="LOGO_URL" jdbcType="VARCHAR" property="logoUrl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, SYSTEM_LINK, ON_OFF, SYSTEM_TYPE, REMARK, CREATE_PEOPLE, CREATE_ID, CREATE_TIME, 
+    MODIFY_TIME, LOGO_URL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SSO_SYSTEM
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SSO_SYSTEM
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.springboot.entity.System">
+    insert into SSO_SYSTEM (ID, NAME, SYSTEM_LINK, 
+      ON_OFF, SYSTEM_TYPE, REMARK, 
+      CREATE_PEOPLE, CREATE_ID, CREATE_TIME, 
+      MODIFY_TIME, LOGO_URL)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{systemLink,jdbcType=VARCHAR}, 
+      #{onOff,jdbcType=CHAR}, #{systemType,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createPeople,jdbcType=VARCHAR}, #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{logoUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.springboot.entity.System">
+    insert into SSO_SYSTEM
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="systemLink != null">
+        SYSTEM_LINK,
+      </if>
+      <if test="onOff != null">
+        ON_OFF,
+      </if>
+      <if test="systemType != null">
+        SYSTEM_TYPE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="createPeople != null">
+        CREATE_PEOPLE,
+      </if>
+      <if test="createId != null">
+        CREATE_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+      <if test="logoUrl != null">
+        LOGO_URL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="systemLink != null">
+        #{systemLink,jdbcType=VARCHAR},
+      </if>
+      <if test="onOff != null">
+        #{onOff,jdbcType=CHAR},
+      </if>
+      <if test="systemType != null">
+        #{systemType,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createPeople != null">
+        #{createPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logoUrl != null">
+        #{logoUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.springboot.entity.System">
+    update SSO_SYSTEM
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="systemLink != null">
+        SYSTEM_LINK = #{systemLink,jdbcType=VARCHAR},
+      </if>
+      <if test="onOff != null">
+        ON_OFF = #{onOff,jdbcType=CHAR},
+      </if>
+      <if test="systemType != null">
+        SYSTEM_TYPE = #{systemType,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createPeople != null">
+        CREATE_PEOPLE = #{createPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        CREATE_ID = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logoUrl != null">
+        LOGO_URL = #{logoUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.springboot.entity.System">
+    update SSO_SYSTEM
+    set NAME = #{name,jdbcType=VARCHAR},
+      SYSTEM_LINK = #{systemLink,jdbcType=VARCHAR},
+      ON_OFF = #{onOff,jdbcType=CHAR},
+      SYSTEM_TYPE = #{systemType,jdbcType=CHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATE_PEOPLE = #{createPeople,jdbcType=VARCHAR},
+      CREATE_ID = #{createId,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      LOGO_URL = #{logoUrl,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
